@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "864b553f-f271-4b73-b5a8-2e24c414cf94",
+		"name": "TestNumber2-BarbaraAnn",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Barabara GET-Test API Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Status code name has string\", function () {",
+							"    pm.response.to.have.status(\"OK\");",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.omdbapi.com/?i=tt1285016&apikey=52ec71bf",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "tt1285016"
+						},
+						{
+							"key": "apikey",
+							"value": "52ec71bf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Barbara GET-Test API Validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"//by text on the response",
+							"pm.test(\"Título do Filme, text include on response\", function () {",
+							"    pm.environment.get(\"Title\") === pm.expect(pm.response.text()).to.include(\"The Social Network\") ;",
+							"});",
+							"",
+							"pm.test(\"Ano do Filme, text include on response\", function () {",
+							"    pm.expect(pm.response.text()).to.include(2010);",
+							"});",
+							"",
+							"pm.test(\"Idioma do filme, text include on response\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"English, French\");",
+							"});",
+							"",
+							"//by object include xpto",
+							"",
+							"pm.test(\"Título do Filme,  by object include on response \", function () {",
+							"    pm.expect(pm.response.json()).to.include({ \"Title\":\"The Social Network\"}) ;",
+							"});",
+							"",
+							"pm.test(\"Ano do Filme, by object include on response\", function () {",
+							"    pm.expect(pm.response.json()).to.include({ \"Year\":\"2010\"}) ;",
+							"});",
+							"",
+							"pm.test(\"Idioma do Filme,  by object include on response\", function () {",
+							"    pm.expect(pm.response.json()).to.include({ \"Language\": \"English, French\"}) ;",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://www.omdbapi.com/?i={{ID_DO_FILME}}&apikey={{API_KEY}}",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "{{ID_DO_FILME}}"
+						},
+						{
+							"key": "apikey",
+							"value": "{{API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Barbara GET-Test API Filme Não encontrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"Filme inexistente\", function () {",
+							"    pm.expect(pm.response.json()).to.include({ \"Response\": \"False\"}) ;",
+							"});",
+							"",
+							"pm.test(\"ID de Filme inexistente\", function () {",
+							"    pm.expect(pm.response.json()).to.include({ \"Error\": \"Incorrect IMDb ID.\"}) ;",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://www.omdbapi.com/?i={{ID_FILME_INEXISTENTE}&apikey={{API_KEY}}",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "{{ID_FILME_INEXISTENTE}"
+						},
+						{
+							"key": "apikey",
+							"value": "{{API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
