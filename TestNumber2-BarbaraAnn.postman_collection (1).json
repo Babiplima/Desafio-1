@@ -1,7 +1,11 @@
+Autora: Bárbara Ann Pereira Lima
+Desafio 2 Noesis
+Teste do projeto de automação para API utilizando framework de sua preferência os cenários
+
 {
 	"info": {
 		"_postman_id": "864b553f-f271-4b73-b5a8-2e24c414cf94",
-		"name": "TestNumber2-BarbaraAnn",
+		"name": "TestNumber2-BarbaraAnnDesafio2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
